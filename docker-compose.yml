@@ -1,0 +1,30 @@
+version: '2'
+services: 
+  php-fpm:
+    container_name: 
+      my-php
+    image: custom-php
+    volumes: 
+      - ./apps:/var/www/html:rw
+      - ./php/logs:/usr/local/php/var/log
+    ports: 
+      - 9000
+    environment: 
+      - APP_ENV=${APP_ENV}
+    network_mode: 
+      ${NETWORK_MODE}
+  
+  nginx:
+    container_name: 
+      my-nginx
+    image: custom-nginx
+    volumes: 
+      - ./nginx/conf.d:/etc/nginx/conf.d:rw
+      - ./nginx/logs:/var/log/nginx
+    links: 
+      - php-fpm:php-fpm
+    network_mode: 
+      ${NETWORK_MODE}
+    ports: 
+      - 8081:8081
+      - 8082:8082
