@@ -13,6 +13,10 @@
 ```
 make compose
 ```
++ remove all docker container
+```
+make remove
+```
 + php log path
 ${your project}/php/logs
 + nginx log path
