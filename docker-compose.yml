@@ -18,6 +18,8 @@ services:
     container_name: 
       my-nginx
     image: custom-nginx
+    volumes_from: 
+      - php-fpm
     volumes: 
       - ./nginx/conf.d:/etc/nginx/conf.d:rw
       - ./nginx/logs:/var/log/nginx
